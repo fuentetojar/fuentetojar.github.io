@@ -269,3 +269,5 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spa
 .sk{color:transparent!important;background:linear-gradient(90deg,rgba(0,0,0,.06),rgba(0,0,0,.12),rgba(0,0,0,.06));background-size:200% 100%;animation:sk 1.4s infinite;border-radius:8px}
 @keyframes sk{to{background-position:-200% 0}}
 .status-msg-wrapper,.blog-pager,.post-feeds,.feed-links{display:none!important}
+
+.ft-visitas{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);color:#E9E6D8;font-size:13.5px}.ft-visitas[hidden]{display:none}.ft-visitas b{color:#fff;font-weight:800}

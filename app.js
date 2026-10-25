@@ -211,6 +211,9 @@ function pintaTiempo(){
 var nb=$(".ft-blog-home");if(nb&&!nb.querySelector(".noti")){var ns=$("#noticias");if(ns)ns.style.display="none";nb.style.display="none"}
 
 /* ---- arranque ---- */
+/* ---- contador de visitas (abacus) ---- */
+(function(){var el=document.getElementById("ftVisitas");if(!el)return;var NS="fuentetojar-github-io",nueva=true;try{nueva=!sessionStorage.getItem("ftv");sessionStorage.setItem("ftv","1")}catch(e){}
+fetch("https://abacus.jasoncameron.dev/"+(nueva?"hit":"get")+"/"+NS+"/visitas").then(function(r){return r.json()}).then(function(j){if(typeof j.value==="number"){document.getElementById("ftVisitasN").textContent=j.value.toLocaleString("es-ES");el.hidden=false}}).catch(function(){})})();
 pintaCielo();pintaSol();reloj();pintaFiestas();pintaTiempo();
 setInterval(reloj,15000);setInterval(pintaCielo,300000);setInterval(pintaSol,300000);
 var y=$("#anyo");if(y)y.textContent=new Date().getFullYear();
