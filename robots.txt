@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://manuosunaca-coder.github.io/fuentetojar/sitemap.xml
