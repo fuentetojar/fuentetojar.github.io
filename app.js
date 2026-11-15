@@ -155,7 +155,7 @@ function pintaFiestas(){
     cal.innerHTML=list.map(function(f){
       var cuando=f.aprox?(f.n==="Carnaval"?"Febrero o marzo":f.n==="Semana Cultural"?"Finales de julio":"Segunda semana de agosto"):(f.fin?fmtF(f.d)+" – "+fmtF(f.fin):fmtF(f.d));
       var esP=p&&f.n===p.n;
-      var tag=f.u?'a href="'+f.u+'" style="display:block;color:inherit;text-decoration:none"':'div';
+      var tag=f.u?'a href="'+f.u+'" style="display:block;text-decoration:none'+(esP?'':';color:inherit')+'"':'div';
       return '<'+tag+' class="fi rv vis'+(esP?" prox":"")+'"><div class="f">'+cuando+'<small>'+f.d.getFullYear()+'</small></div><h4>'+(f.star?"★ ":"")+f.n+'</h4><p>'+f.t+'</p>'+(f.u?'<p style="margin-top:10px;font-weight:700;font-size:14px;opacity:.85">Más información →</p>':'')+'</'+(f.u?'a':'div')+'>';
     }).join("");
   }
