@@ -130,16 +130,16 @@ function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
 function fiestasDe(y){
   var P=pascua(y);
   return [
-    {n:"Cabalgata de Reyes",d:new Date(y,0,5,18),t:"Los Reyes Magos recorren las calles la noche del 5 de enero."},
-    {n:"Carnaval",d:add(P,-50),t:"Disfraces y comparsas antes de la Cuaresma.",aprox:1},
-    {n:"San José",d:new Date(y,2,19,12),t:"Comida campera junto a la ermita de San José de La Mesa."},
-    {n:"Semana Santa",d:add(P,-7),fin:P,t:"Procesiones por las calles blancas, del Domingo de Ramos al de Resurrección."},
-    {n:"Feria Real de San Isidro",d:new Date(y,4,15,12),t:"El gran día del pueblo: procesión y Danzantes de San Isidro.",star:1},
-    {n:"Semana Cultural",d:new Date(y,6,24),t:"Actividades, música y talleres a finales de julio.",aprox:1},
-    {n:"Cruz de la Cubertilla",d:sabadoN(y,7,1),t:"Primer fin de semana de agosto."},
-    {n:"Semana Joven",d:add(sabadoN(y,7,2),-5),t:"Segunda semana de agosto, pensada para los jóvenes.",aprox:1},
-    {n:"Fiesta de La Alcaparra",d:sabadoN(y,7,2),t:"Homenaje a los tojeños que emigraron. Segundo fin de semana de agosto.",star:1},
-    {n:"Virgen del Rosario",d:new Date(y,9,7,12),t:"Fiesta de la patrona, titular de la iglesia del pueblo."}
+    {n:"Cabalgata de Reyes",u:"fiestas.html#reyes",d:new Date(y,0,5,18),t:"Los Reyes Magos recorren las calles la noche del 5 de enero."},
+    {n:"Carnaval",u:"fiestas.html#carnaval",d:add(P,-50),t:"Disfraces y comparsas antes de la Cuaresma.",aprox:1},
+    {n:"San José",u:"san-jose.html",d:new Date(y,2,19,12),t:"Comida campera junto a la ermita de San José de La Mesa."},
+    {n:"Semana Santa",u:"fiestas.html#semana-santa",d:add(P,-7),fin:P,t:"Procesiones por las calles blancas, del Domingo de Ramos al de Resurrección."},
+    {n:"Feria Real de San Isidro",u:"danzantes.html",d:new Date(y,4,15,12),t:"El gran día del pueblo: procesión y Danzantes de San Isidro.",star:1},
+    {n:"Semana Cultural",u:"fiestas.html#verano",d:new Date(y,6,24),t:"Actividades, música y talleres a finales de julio.",aprox:1},
+    {n:"Cruz de la Cubertilla",u:"https://lacubertilla.github.io/fiestas-santa-cruz.html",d:sabadoN(y,7,1),t:"Primer fin de semana de agosto."},
+    {n:"Semana Joven",u:"fiestas.html#verano",d:add(sabadoN(y,7,2),-5),t:"Segunda semana de agosto, pensada para los jóvenes.",aprox:1},
+    {n:"Fiesta de La Alcaparra",u:"alcaparra.html",d:sabadoN(y,7,2),t:"Homenaje a los tojeños que emigraron. Segundo fin de semana de agosto.",star:1},
+    {n:"Virgen del Rosario",u:"fiestas.html#rosario",d:new Date(y,9,7,12),t:"Fiesta de la patrona, titular de la iglesia del pueblo."}
   ];
 }
 function fmtF(d){return d.toLocaleDateString("es-ES",{day:"numeric",month:"long"})}
@@ -155,7 +155,8 @@ function pintaFiestas(){
     cal.innerHTML=list.map(function(f){
       var cuando=f.aprox?(f.n==="Carnaval"?"Febrero o marzo":f.n==="Semana Cultural"?"Finales de julio":"Segunda semana de agosto"):(f.fin?fmtF(f.d)+" – "+fmtF(f.fin):fmtF(f.d));
       var esP=p&&f.n===p.n;
-      return '<div class="fi rv vis'+(esP?" prox":"")+'"><div class="f">'+cuando+'<small>'+f.d.getFullYear()+'</small></div><h4>'+(f.star?"★ ":"")+f.n+'</h4><p>'+f.t+'</p></div>';
+      var tag=f.u?'a href="'+f.u+'" style="display:block;color:inherit;text-decoration:none"':'div';
+      return '<'+tag+' class="fi rv vis'+(esP?" prox":"")+'"><div class="f">'+cuando+'<small>'+f.d.getFullYear()+'</small></div><h4>'+(f.star?"★ ":"")+f.n+'</h4><p>'+f.t+'</p>'+(f.u?'<p style="margin-top:10px;font-weight:700;font-size:14px;opacity:.85">Más información →</p>':'')+'</'+(f.u?'a':'div')+'>';
     }).join("");
   }
   if(!p)return;
